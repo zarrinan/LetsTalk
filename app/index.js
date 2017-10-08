@@ -1,15 +1,8 @@
-import React { Component } from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-
-class Main extends Component {
-  render () {
-    return {
-      <p>Hey there!</p>
-
-    }
-  }
-}
+import routes from './config/routes'
 
 ReactDOM.render(
-  <Main />
-  document.getElementById('app'));
+  routes,
+  document.getElementById('app')
+)

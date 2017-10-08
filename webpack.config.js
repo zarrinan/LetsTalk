@@ -19,5 +19,12 @@ module.exports = {
       {test: /\.css$/, loader: 'style-loader!css-loader'}
     ]
   },
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [
+        HtmlWebpackPluginConfig,
+        new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      })
+  ]
 }
