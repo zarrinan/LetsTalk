@@ -31,43 +31,43 @@ const initialState = {
 export default function users (state = initialState, action) {
   switch (action.type) {
     case AUTH_USER :
-    return {
-      ...state,
-      isAuthed: true,
-      authedId: action.uid,
-    }
+      return {
+        ...state,
+        isAuthed: true,
+        authedId: action.uid,
+      }
     case UNAUTH_USER :
-    return {
-      ...state,
-      isAuthed: false,
-      authedId: '',
-    }
+      return {
+        ...state,
+        isAuthed: false,
+        authedId: '',
+      }
     case FETCHING_USER :
-    return {
-      ...state,
-      isFetching: true,
-    }
+      return {
+        ...state,
+        isFetching: true,
+      }
     case FETCHING_USER_FAILURE :
-    return {
-      ...state,
-      isFetching: false,
-      error: action.error,
-    }
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error,
+      }
     case FETCHING_USER_SUCCESS :
-    return action.user === null
-    ? {
-      ...state,
-      isFetching: false,
-      error: '',
-    }
-    : {
-      ...state,
-      isFetching: false,
-      error: '',
-      [action.uid]: user(state[action.uid], action),
-    }
-default:
-  return state
+      return action.user === null
+      ? {
+        ...state,
+        isFetching: false,
+        error: '',
+      }
+      : {
+        ...state,
+        isFetching: false,
+        error: '',
+        [action.uid]: user(state[action.uid], action),
+      }
+    default:
+      return state
   }
 }
 
@@ -80,10 +80,10 @@ const initialState = {
 export default function posts (state = initialState, action) {
   switch (action.type) {
     case FETCHING_POST :
-    return {
-      ...state,
-      isFetching: true,
-    }
+      return {
+        ...state,
+        isFetching: true,
+      }
     case ADD_POST :
     case FETCHING_POST_SUCCESS :
       return {
@@ -107,13 +107,14 @@ export default function posts (state = initialState, action) {
     case ADD_MULTIPLE_POSTS :
       return {
         ...state,
-        ...action.posts
+        ...action.posts,
       }
     default:
       return state
   }
 }
 
+//Feed
 const initialState = {
   isFetching: false,
   newPostsAvailable: false,
@@ -170,12 +171,11 @@ export default function listeners (state = {}, action) {
         [action.listenerId]: true,
       }
     default:
-    return state
+      return state
   }
 }
 
-//modal
-
+//Modal
 const initialState = {
   postText: '',
   isOpen: false,
@@ -204,7 +204,6 @@ export default function modal (state = initialState, action) {
 }
 
 //usersLikes
-
 const initialState = {
   isFetching: false,
   error: '',
@@ -305,7 +304,7 @@ const initialUsersPostState = {
   postIds: [],
 }
 
-function usersPosts (state = initialUsersPostState, action) {
+function usersPost (state = initialUsersPostState, action) {
   switch (action.type) {
     case ADD_SINGLE_USERS_POST :
       return {
@@ -407,9 +406,8 @@ function repliesAndLastUpdated (state = initialPostState, action) {
         }
     default :
       return state
-      }
+    }
   }
-}
 
 const initialState = {
   isFetching: true,
