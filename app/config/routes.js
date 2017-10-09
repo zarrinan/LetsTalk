@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { MainContainer, HomeContainer, AuthenticateContainer, FeedContainer } from 'containers'
+import {
+  MainContainer, HomeContainer, AuthenticateContainer,
+  FeedContainer, LogoutContainer } from 'containers'
 
 export default function getRoutes (checkAuth) {
   return (
@@ -9,7 +11,8 @@ export default function getRoutes (checkAuth) {
         <Switch>
           <Route exact={true} path='/' component={HomeContainer} onEnter={checkAuth}  />
           <Route path='/auth' component={AuthenticateContainer} onEnter={checkAuth} />
-          <Route path='/feed' component={FeedContainer} onEnter={checkAuth}  />
+          <Route path='/feed' component={FeedContainer} onEnter={checkAuth} />
+          <Route path='/logout' component={LogoutContainer} />
         </Switch>
       </MainContainer>
     </Router>
