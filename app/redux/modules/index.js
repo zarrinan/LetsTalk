@@ -1,2 +1,5 @@
 export users from './users'
 export modal from './modal'
+export posts from './posts'
+export feed from './feed'
+export usersPosts from './usersPosts'

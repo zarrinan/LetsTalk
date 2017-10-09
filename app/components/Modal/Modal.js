@@ -4,6 +4,7 @@ import { default as ReactModal } from 'react-modal'
 import {
   newPostTop, pointer, newPostInputContainer,
   newPostInput, submitPostBtn, darkBtn } from './styles.css'
+  import { formatPost } from 'helpers/utils'
 
 const modalStyles = {
   content: {
@@ -18,8 +19,7 @@ const modalStyles = {
 
 export default function Modal (props) {
   function submitPost () {
-    console.log('Duck', props.postText)
-    console.log('user', props.user)
+    props.postFanout(formatPost(props.postText, props.user))
   }
 
   return (
@@ -59,4 +59,5 @@ Modal.PropTypes = {
   openModal: func.isRequired,
   closeModal: func.isRequired,
   updatePostText: func.isRequired,
+  postFanout: func.isRequired,
 }

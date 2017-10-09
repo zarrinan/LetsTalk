@@ -2,6 +2,7 @@ import { Modal } from 'components'
 import { connect } from 'react-redux'
 import * as modalActionCreators from 'redux/modules/modal'
 import { bindActionCreators } from 'redux'
+import * as postsActionCreators from 'redux/modules/posts'
 
 function mapStateToProps ({modal, users}) {
   const postTextLength = modal.postText.length
@@ -14,7 +15,7 @@ function mapStateToProps ({modal, users}) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(modalActionCreators, dispatch)
+  return bindActionCreators({...modalActionCreators, ...postsActionCreators}, dispatch)
 }
 
 export default connect(
