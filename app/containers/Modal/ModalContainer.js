@@ -1,12 +1,23 @@
-import React, { Component } from 'react'
 import { Modal } from 'components'
+import { connect } from 'react-redux'
+import * as modalActionCreators from 'redux/modules/modal'
+import { bindActionCreators } from 'redux'
 
-export class ModalContainer extends Component {
-  render () {
-    return (
-      <Modal />
-    )
+function mapStateToProps ({modal, users}) {
+  const postTextLength = modal.postText.length
+  return {
+    user: users[users.authedId] ? users[users.authedId].info : {},
+    postText: modal.postText,
+    isOpen: modal.isOpen,
+    isSubmitDisabled: postTextLength <= 0 || postTextLength > 140,
   }
 }
 
-export default ModalContainer
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators(modalActionCreators, dispatch)
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Modal)
