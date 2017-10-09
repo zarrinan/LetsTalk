@@ -5,13 +5,13 @@ function saveToPosts (post) {
   const postPromise = ref.child(`posts/${postId}`).set({...post, postId})
   return {
     postId,
-    postPromise
+    postPromise,
   }
 }
 
 function saveToUsersPosts (post, postId) {
   return ref.child(`usersPosts/${post.uid}/${postId}`)
-  .set({...post, postId})
+    .set({...post, postId})
 }
 
 function saveLikeCount (postId) {
@@ -26,4 +26,12 @@ export function savePost (post) {
     saveToUsersPosts(post, postId),
     saveLikeCount(postId),
   ]).then(() => ({...post, postId}))
+}
+
+export function listenToFeed (cb, errorCB) {
+  ref.child('posts').on('value', (snapshot) => {
+    const feed = snapshot.val() || {}
+    const sortedIds = Object.keys(feed).sort((a, b) => feed[b].timestamp - feed[a].timestamp)
+    cb({feed, sortedIds})
+  }, errorCB)
 }

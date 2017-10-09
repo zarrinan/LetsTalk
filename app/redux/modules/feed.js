@@ -1,16 +1,20 @@
+import { addListener } from 'redux/modules/listeners'
+import { listenToFeed } from 'helpers/api'
+import { addMultiplePosts } from 'redux/modules/posts'
+
 const SETTING_FEED_LISTENER = 'SETTING_FEED_LISTENER'
 const SETTING_FEED_LISTENER_ERROR = 'SETTING_FEED_LISTENER_ERROR'
 const SETTING_FEED_LISTENER_SUCCESS = 'SETTING_FEED_LISTENER_SUCCESS'
 const ADD_NEW_POST_ID_TO_FEED = 'ADD_NEW_POST_ID_TO_FEED'
 const RESET_NEW_POSTS_AVAILABLE = 'RESET_NEW_POSTS_AVAILABLE'
 
-function settingFeedListener() {
+function settingFeedListener () {
   return {
     type: SETTING_FEED_LISTENER,
   }
 }
 
-function settingFeedListenerError(error) {
+function settingFeedListenerError (error) {
   console.warn(error)
   return {
     type: SETTING_FEED_LISTENER_ERROR,
@@ -18,23 +22,42 @@ function settingFeedListenerError(error) {
   }
 }
 
-function settingFeedListenerSuccess(postIds) {
+function settingFeedListenerSuccess (postIds) {
   return {
     type: SETTING_FEED_LISTENER_SUCCESS,
     postIds,
   }
 }
 
-function addNewPostIdToFeed(postId) {
+function addNewPostIdToFeed (postId) {
   return {
     type: ADD_NEW_POST_ID_TO_FEED,
     postId,
   }
 }
 
-function resetNewPostsAvailable() {
+export function resetNewPostsAvailable () {
   return {
     type: RESET_NEW_POSTS_AVAILABLE,
+  }
+}
+
+export function setAndHandleFeedListener () {
+  let initialFetch = true
+  return function (dispatch, getState) {
+    if (getState().listeners.feed === true) {
+      return
+    }
+
+    dispatch(addListener('feed'))
+    dispatch(settingFeedListener())
+    listenToFeed(({feed, sortedIds}) => {
+      dispatch(addMultiplePosts(feed))
+      initialFetch === true
+        ? dispatch(settingFeedListenerSuccess(sortedIds))
+        : dispatch(addNewPostIdToFeed(sortedIds[0]))
+      initialFetch = false
+    }, (error) => dispatch(settingFeedListenerError(error)))
   }
 }
 

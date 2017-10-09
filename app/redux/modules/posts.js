@@ -43,7 +43,7 @@ function addPost (post) {
   }
 }
 
-function addMultiplePosts (posts) {
+export function addMultiplePosts (posts) {
   return {
     type: ADD_MULTIPLE_POSTS,
     posts,
