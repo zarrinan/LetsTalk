@@ -21,8 +21,12 @@ class AuthenticateContainer extends Component {
   //   error: PropTypes.string.isRequired,
   // }
 
-  handleAuth () {
+
+  handleAuth (e) {
+    e.preventDefault();
+
     this.props.fetchAndHandleAuthedUser()
+      .then(() => this.context.router.history.replace('/feed'))
     // auth().then((user) => {
     //   this.props.fetchingUserSuccess(user.uid, user, Date.now())
     //   this.props.authUser(user.uid)
@@ -47,6 +51,10 @@ AuthenticateContainer.propTypes = {
   fetchAndHandleAuthedUser: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
+}
+
+AuthenticateContainer.contextTypes = {
+  router: PropTypes.object.isRequired,
 }
 
 export default connect(
