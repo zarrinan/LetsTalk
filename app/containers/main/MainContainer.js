@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { container, innerContainer } from './styles.css'
 import { Navigation } from 'components'
+import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
 class MainContainer extends Component {
@@ -22,6 +23,6 @@ MainContainer.PropTypes = {
   isAuthed: PropTypes.bool.isRequired,
 }
 
-export default connect(
+export default withRouter(connect(
   (state) => ({isAuthed: state.isAuthed})
-)(MainContainer)
+)(MainContainer))
