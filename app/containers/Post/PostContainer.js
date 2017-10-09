@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import * as usersLikesAction from 'redux/modules/usersLikes'
 import { Post } from 'components'
 
 class PostContainer extends Component {
@@ -64,6 +66,6 @@ function mapStateToProps ({posts, likeCount, usersLikes}, props) {
 // }
 
 export default connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  (dispatch) => bindActionCreators(usersLikesAction, dispatch)
 )(PostContainer)
