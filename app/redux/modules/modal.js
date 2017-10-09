@@ -2,19 +2,19 @@ const OPEN_MODAL = 'OPEN_MODAL'
 const CLOSE_MODAL = 'CLOSE_MODAL'
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
 
-function openModal () {
+export function openModal () {
   return {
     type: OPEN_MODAL,
   }
 }
 
-function closeModal () {
+export function closeModal () {
   return {
     type: CLOSE_MODAL,
   }
 }
 
-function updatePostText (newPostText) {
+export function updatePostText (newPostText) {
   return {
     type: UPDATE_POST_TEXT,
     newPostText,
@@ -27,7 +27,7 @@ const initialState = {
 }
 
 export default function modal (state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case OPEN_MODAL :
       return {
         ...state,
