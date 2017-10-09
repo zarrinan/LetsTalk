@@ -10,10 +10,13 @@ import { checkIfAuthed } from 'helpers/auth'
 const store = createStore(users, applyMiddleware(thunk))
 
 function checkAuth (nextState, replace) {
+  if (store.getState().isFetching === true) {
+    return
+  }
   const isAuthed = checkIfAuthed(store)
   const nextPathName = nextState.location.pathname
   if (nextPathName === '/' || nextPathName === '/auth') {
-    if (isAuthed === true ) {
+    if (isAuthed === true) {
       replace('/feed')
     }
   } else {
