@@ -1,5 +1,5 @@
-//import { fetchUsersPosts } from '.helpers/api'
-//import { addMultiplePosts } from 'redux/modules/posts'
+import { fetchUsersPosts } from 'helpers/api'
+import { addMultiplePosts } from 'redux/modules/posts'
 
 const FETCHING_USERS_POSTS = 'FETCHING_USERS_POSTS'
 const FETCHING_USERS_POSTS_ERROR = 'FETCHING_USERS_POSTS_ERROR'
@@ -35,6 +35,22 @@ export function addSingleUsersPost (uid, postIds) {
     type: ADD_SINGLE_USERS_POST,
     uid,
     postIds,
+  }
+}
+
+export function fetchAndHandleUsersPosts (uid) {
+  return function (dispatch) {
+    dispatch(fetchingUsersPosts())
+    fetchUsersPosts(uid)
+      .then((posts) => dispatch(addMultiplePosts(posts)))
+      .then(({posts}) => dispatch(
+        fetchingUsersPostsSuccess(
+          uid,
+          Object.keys(posts).sort((a, b) => posts[b].timestamp - posts[a].timestamp),
+          Date.now()
+        )
+      ))
+      .catch((error) => dispatch(fetchingUsersPostsError(error)))
   }
 }
 
