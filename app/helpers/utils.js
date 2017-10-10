@@ -1,4 +1,4 @@
-import { usersPostsExpirationLength, userExpirationLength } from 'config/constants'
+import { usersPostsExpirationLength, userExpirationLength, repliesExpirationLength } from 'config/constants'
 
 export function formatUserInfo (name, avatar, uid) {
   return {
@@ -14,7 +14,7 @@ export function formatPost (text, {name, avatar, uid}) {
     name,
     avatar,
     uid,
-    timestamp: Date.now()
+    timestamp: Date.now(),
   }
 }
 
@@ -33,4 +33,18 @@ export function stalePosts (timestamp) {
 
 export function staleUser (timestamp) {
   return getMilliseconds(timestamp) > userExpirationLength
+}
+
+export function staleReplies (timestamp) {
+  return getMilliseconds(timestamp) > repliesExpirationLength
+}
+
+export function formatReply ({name, uid, avatar}, reply) {
+  return {
+    name,
+    reply,
+    uid,
+    avatar,
+    timestamp: Date.now(),
+  }
 }

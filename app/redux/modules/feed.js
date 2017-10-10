@@ -1,6 +1,7 @@
 import { addListener } from 'redux/modules/listeners'
 import { listenToFeed } from 'helpers/api'
 import { addMultiplePosts } from 'redux/modules/posts'
+import { fromJS, List } from 'immutable'
 
 const SETTING_FEED_LISTENER = 'SETTING_FEED_LISTENER'
 const SETTING_FEED_LISTENER_ERROR = 'SETTING_FEED_LISTENER_ERROR'
@@ -51,6 +52,7 @@ export function setAndHandleFeedListener () {
 
     dispatch(addListener('feed'))
     dispatch(settingFeedListener())
+
     listenToFeed(({feed, sortedIds}) => {
       dispatch(addMultiplePosts(feed))
       initialFetch === true

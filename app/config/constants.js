@@ -16,3 +16,4 @@ export const firebaseAuth = firebase.auth
 
 export const usersPostsExpirationLength = 10000
 export const userExpirationLength = 10000
+export const repliesExpirationLength = 300000

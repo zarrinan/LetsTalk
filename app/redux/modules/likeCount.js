@@ -1,4 +1,5 @@
 import { ADD_LIKE, REMOVE_LIKE } from './usersLikes'
+import { fetchLikeCount } from 'helpers/api'
 
 const FETCHING_COUNT = 'FETCHING_COUNT'
 const FETCHING_COUNT_ERROR = 'FETCHING_COUNT_ERROR'
@@ -23,6 +24,16 @@ function fetchingCountSuccess (postId, count) {
     type: FETCHING_COUNT_SUCCESS,
     postId,
     count,
+  }
+}
+
+export function initLikeFetch (postId) {
+  return function (dispatch) {
+    dispatch(fetchingCount())
+    fetchLikeCount(postId)
+
+      .then((count) => dispatch(fetchingCountSuccess(postId, count)))
+      .catch((error) => dispatch(fetchingCountError(error)))
   }
 }
 

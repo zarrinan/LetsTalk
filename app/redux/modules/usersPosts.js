@@ -38,22 +38,6 @@ export function addSingleUsersPost (uid, postIds) {
   }
 }
 
-export function fetchAndHandleUsersPosts (uid) {
-  return function (dispatch) {
-    dispatch(fetchingUsersPosts())
-    fetchUsersPosts(uid)
-      .then((posts) => dispatch(addMultiplePosts(posts)))
-      .then(({posts}) => dispatch(
-        fetchingUsersPostsSuccess(
-          uid,
-          Object.keys(posts).sort((a, b) => posts[b].timestamp - posts[a].timestamp),
-          Date.now()
-        )
-      ))
-      .catch((error) => dispatch(fetchingUsersPostsError(error)))
-  }
-}
-
 const initialUsersPostState = {
   lastUpdated: 0,
   postIds: [],
@@ -71,6 +55,22 @@ function usersPost (state = initialUsersPostState, action) {
   }
 }
 
+export function fetchAndHandleUsersPosts (uid) {
+  return function (dispatch, getState) {
+    dispatch(fetchingUsersPosts())
+
+    fetchUsersPosts(uid)
+      .then((posts) => dispatch(addMultiplePosts(posts)))
+      .then(({posts}) => dispatch(
+        fetchingUsersPostsSuccess(
+          uid,
+          Object.keys(posts).sort((a, b) => posts[b].timestamp - posts[a].timestamp),
+          Date.now())
+      )
+      )
+      .catch((error) => dispatch(fetchingUsersPostsError(error)))
+  }
+}
 const initialState = {
   isFetching: true,
   error: '',

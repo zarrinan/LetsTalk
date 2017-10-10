@@ -1,6 +1,7 @@
-import { savePost } from 'helpers/api'
+import { savePost, fetchPost } from 'helpers/api'
 import { closeModal } from './modal'
 import { addSingleUsersPost } from './usersPosts'
+import { Map, fromJS } from 'immutable'
 
 const FETCHING_POST = 'FETCHING_POST'
 const FETCHING_POST_ERROR = 'FETCHING_POST_ERROR'
@@ -30,7 +31,7 @@ function fetchingPostSuccess (post) {
   }
 }
 
-function removeFetching () {
+export function removeFetching () {
   return {
     type: REMOVE_FETCHING,
   }
@@ -65,10 +66,19 @@ export function postFanout (post) {
   }
 }
 
-const initialState = {
+export function fetchAndHandlePost (postId) {
+  return function (dispatch) {
+    dispatch(fetchingPost())
+    fetchPost(postId)
+      .then((post) => dispatch(fetchingPostSuccess(post)))
+      .catch((error) => dispatch(fetchingPostError(error)))
+  }
+}
+
+const initialState = Map({
   isFetching: true,
   error: '',
-}
+})
 
 export default function posts (state = initialState, action) {
   switch (action.type) {

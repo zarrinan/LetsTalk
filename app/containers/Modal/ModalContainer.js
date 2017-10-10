@@ -4,7 +4,7 @@ import * as modalActionCreators from 'redux/modules/modal'
 import { bindActionCreators } from 'redux'
 import * as postsActionCreators from 'redux/modules/posts'
 
-function mapStateToProps ({modal, users}) {
+function mapStateToProps ({modal, users}, props) {
   const postTextLength = modal.postText.length
   return {
     user: users[users.authedId] ? users[users.authedId].info : {},
@@ -14,8 +14,11 @@ function mapStateToProps ({modal, users}) {
   }
 }
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({...modalActionCreators, ...postsActionCreators}, dispatch)
+function mapDispatchToProps (dispatch, props) {
+  return bindActionCreators({
+    ...modalActionCreators,
+    ...postsActionCreators,
+  }, dispatch)
 }
 
 export default connect(

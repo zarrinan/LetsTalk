@@ -45,15 +45,6 @@ export function fetchingUserSuccess (uid, user, timestamp) {
   }
 }
 
-export function fetchAndHandleUser (uid) {
-  return function (dispatch) {
-    dispatch(fetchingUser())
-    return fetchUser(uid)
-      .then((user) => dispatch(fetchingUserSuccess(uid, user, Date.now())))
-      .catch((error) => dispatch(fetchingUserFailure(error)))
-  }
-}
-
 export function fetchAndHandleAuthedUser () {
   return function (dispatch) {
     dispatch(fetchingUser())
@@ -81,6 +72,16 @@ export function removeFetchingUser() {
   }
 }
 
+export function fetchAndHandleUser (uid) {
+  return function (dispatch) {
+    dispatch(fetchingUser())
+
+    return fetchUser(uid)
+      .then((user) => dispatch(fetchingUserSuccess(uid, user, Date.now())))
+      .catch((error) => dispatch(fetchingUserFailure(error)))
+  }
+}
+
 const initialUserState = {
   lastUpdated: 0,
   info: {
@@ -90,7 +91,7 @@ const initialUserState = {
   },
 }
 
-export function user (state = initialUserState, action) {
+function user (state = initialUserState, action) {
   switch (action.type) {
     case FETCHING_USER_SUCCESS :
       return {
@@ -151,7 +152,7 @@ export default function users (state = initialState, action) {
     case REMOVE_FETCHING_USER :
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
       }
     default:
       return state

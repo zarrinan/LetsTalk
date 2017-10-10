@@ -59,12 +59,38 @@ export function decrementNumberOfLikes (postId) {
     .transaction((currentValue = 0) => currentValue - 1)
 }
 
+export function fetchUsersPosts (uid) {
+  return ref.child(`usersPosts/${uid}`).once('value')
+    .then((snapshot) => snapshot.val() || {})
+}
+
 export function fetchUser (uid) {
   return ref.child(`users/${uid}`).once('value')
     .then((snapshot) => snapshot.val())
 }
 
-export function fetchUsersPosts (uid) {
-  return ref.child(`usersPosts/${uid}`).once('value')
+export function fetchPost (postId) {
+  return ref.child(`posts/${postId}`).once('value')
+    .then((snapshot) => snapshot.val())
+}
+
+export function fetchLikeCount (postId) {
+  return ref.child(`likeCount/${postId}`).once('value')
+    .then((snapshot) => snapshot.val() || 0)
+}
+
+export function postReply (postId, reply) {
+  const replyId = ref.child(`replies/${postId}`).push().key
+  const replyWithId = {...reply, replyId}
+  const replyPromise = ref.child(`replies/${postId}/${replyId}`).set(replyWithId)
+
+  return {
+    replyWithId,
+    replyPromise,
+  }
+}
+
+export function fetchReplies (postId) {
+  return ref.child(`replies/${postId}`).once('value')
     .then((snapshot) => snapshot.val() || {})
 }
