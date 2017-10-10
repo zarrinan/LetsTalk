@@ -14,7 +14,7 @@ class UserContainer extends Component {
       this.props.fetchAndHandleUser(uid)
     }
     if (this.props.noUser === true || stalePosts(this.props.lastUpdatedPosts)) {
-     this.props.fetchAndHandleUsersPosts(uid)
+      this.props.fetchAndHandleUsersPosts(uid)
     }
   }
 
@@ -25,8 +25,7 @@ class UserContainer extends Component {
         name={this.props.name}
         isFetching={this.props.isFetching}
         error={this.props.error}
-        postIds={this.props.postIds}
-      />
+        postIds={this.props.postIds} />
     )
   }
 }
@@ -45,9 +44,9 @@ UserContainer.PropTypes = {
 }
 
 function mapStateToProps ({users, usersPosts}, props) {
-  const specificUsersPosts = usersPosts[uid]
   const uid = props.match.params.uid
   const user = users[uid]
+  const specificUsersPosts = usersPosts[uid]
   const noUser = typeof user === 'undefined'
   return {
     noUser,
@@ -63,7 +62,7 @@ function mapStateToProps ({users, usersPosts}, props) {
 function mapDispatchtoProps (dispatch) {
   return bindActionCreators({
     ...usersActionCreators,
-    ...usersPostsActionCreators
+    ...usersPostsActionCreators,
   }, dispatch)
 }
 
