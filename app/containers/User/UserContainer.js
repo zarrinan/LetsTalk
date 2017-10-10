@@ -48,6 +48,7 @@ function mapStateToProps ({users, usersPosts}, props) {
   const user = users[uid]
   const specificUsersPosts = usersPosts[uid]
   const noUser = typeof user === 'undefined'
+
   return {
     noUser,
     isFetching: users.isFetching || usersPosts.isFetching,

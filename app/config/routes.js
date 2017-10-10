@@ -12,9 +12,9 @@ export default function getRoutes (checkAuth) {
           <Route exact={true} path='/' component={HomeContainer} onEnter={checkAuth} />
           <Route path='/auth' component={AuthenticateContainer} onEnter={checkAuth} />
           <Route path='/feed' component={FeedContainer} onEnter={checkAuth} />
-          <Route path='/logout' component={LogoutContainer} />
+          <Route path='/post-detail/:postId' component={PostDetailsContainer} onEnter={checkAuth} />
           <Route path='/:uid' component={UserContainer} onEnter={checkAuth} />
-          <Route path='/postDetail/:postId' component={PostDetailsContainer} onEnter={checkAuth} />
+          <Route path='/logout' component={LogoutContainer} />
         </Switch>
       </MainContainer>
     </Router>

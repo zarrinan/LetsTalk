@@ -11,7 +11,7 @@ NewPostsAvailable.propTypes = {
 function NewPostsAvailable ({handleClick}) {
   return (
     <div className={newPostContainer} onClick={handleClick}>
-      {'New Posts Available'}
+      New Posts Available
     </div>
   )
 }

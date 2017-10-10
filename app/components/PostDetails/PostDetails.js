@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import {
   mainContainer, container, content, repliesContainer,
   replyTextAreaContainer, replyTextArea } from './styles.css'
@@ -8,13 +7,11 @@ import { subHeader, darkBtn, errorMsg } from 'shared/styles.css'
 import { PostContainer, RepliesContainer } from 'containers'
 import { formatReply } from 'helpers/utils'
 
-Reply.propTypes = {
-  submit: PropTypes.func.isRequired,
-}
-
 function Reply ({ submit }) {
-  const handleSubmit = (e) => {
-    if (Reply.ref.value.length === 0) return
+  function handleSubmit (e) {
+    if (Reply.ref.value.length === 0) {
+      return
+    }
 
     submit(Reply.ref.value, e)
     Reply.ref.value = ''

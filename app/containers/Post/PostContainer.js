@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as usersLikesAction from 'redux/modules/usersLikes'
+import * as usersLikesActions from 'redux/modules/usersLikes'
 import { Post } from 'components'
 
 class PostContainer extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.handleClick = this.handleClick.bind(this)
@@ -27,7 +27,7 @@ class PostContainer extends Component {
     return (
       <Post
         goToProfile={this.goToProfile}
-        onClick={this.props.hideReplyBtn === true ? null : this.handleClick}
+        onClick={this.handleClick}
         {...this.props} />
     )
   }
@@ -61,11 +61,12 @@ function mapStateToProps ({posts, likeCount, usersLikes}, props) {
     numberOfLikes: likeCount[props.postId],
   }
 }
-// function mapDispatchToProps (dispatch) {
-//   return bindActionCreators(usersLikesActions, dispatch)
-// }
+
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators(usersLikesActions, dispatch)
+}
 
 export default connect(
   mapStateToProps,
-  (dispatch) => bindActionCreators(usersLikesAction, dispatch)
+  mapDispatchToProps
 )(PostContainer)

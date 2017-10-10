@@ -5,7 +5,8 @@ import { errorMsg } from 'shared/styles.css'
 import { PostContainer } from 'containers'
 
 export default function User (props) {
-  return props.noUser === true
+  return (
+    props.noUser === true
     ? <p className={header}>{'This user doesnt exist. 👽'}</p>
     : <div>
       {props.isFetching === true
@@ -19,7 +20,7 @@ export default function User (props) {
               postId={id}
               key={id} />
           ))}
-          {props.postIds.size === 0
+          {props.postIds.length === 0
             ? <p className={header}>
                 {`It looks like ${props.name.split(' ')[0]} hasn't made any posts yet.`}
               </p>
@@ -27,6 +28,7 @@ export default function User (props) {
         </div>}
     {props.error ? <p className={errorMsg}>{props.error}</p> : null}
     </div>
+    )
 }
 
 
