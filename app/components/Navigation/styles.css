@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  color: #4a90e2;
+  color: #1b98b5;
   font-size: 1.125em;
 }
 
@@ -31,5 +31,5 @@
 }
 
 .link:hover {
-  color: #1877e6;
+  color: #0f5666;
 }

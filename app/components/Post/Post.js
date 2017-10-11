@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { formatTimestamp } from 'helpers/utils'
 import Reply from 'react-icons/lib/fa/mail-reply'
 import Star from 'react-icons/lib/fa/star'
+import Comment from 'react-icons/lib/fa/comment'
+import Sun from 'react-icons/lib/fa/certificate'
 
 import {
   postContainer, contentContainer, avatar, actionContainer,
@@ -47,9 +49,9 @@ export default function Post (props) {
         <div className={text}>{props.post.text}</div>
         <div className={likeReplyContainer}>
           {!props.hideReplyBtn &&
-            <Reply className={icon} />}
+            <Comment className={icon} />}
           <div className={actionContainer}>
-            <Star
+            <Sun
               className={starIcon}
               onClick={(e) => starFn(props.post.postId, e)} />
             {!props.hideLikeCount &&

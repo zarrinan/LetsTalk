@@ -16,14 +16,14 @@ html, body {
 }
 
 .largeHeader {
-  color: #4a90e2;
+  color: #1b98b5;
   font-weight: 100;
   font-size: 100px;
   margin-bottom: 20px;
 }
 
 .subHeader {
-  color: #4a90e2;
+  color: #00a4b3;
   font-weight: 100;
   font-size: 35px;
   text-align: center;
@@ -55,7 +55,7 @@ html, body {
 }
 
 .darkBtn {
-  background: #4a90e2;
+  background: #1b98b5;
   color: #fff;
   text-align: center;
   border-radius: 5px;
@@ -63,17 +63,17 @@ html, body {
   border-style: none;
   font-size: 16px;
   cursor: pointer;
-  border: 1px solid #4a90e2;
+  border: 1px solid #1b98b5;
 }
 
 .darkBtn:hover {
-  background: #1877E6
+  background: #0f5666
 }
 
 
 .basePostContainer {
  border-radius: 5px;
- max-width: 450px;
+ max-width: 550px;
  margin: 15px auto;
  padding: 10px;
  cursor: pointer;

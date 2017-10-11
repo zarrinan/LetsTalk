@@ -66,7 +66,7 @@ export function logoutAndUnauth () {
   }
 }
 
-export function removeFetchingUser() {
+export function removeFetchingUser () {
   return {
     type: REMOVE_FETCHING_USER
   }

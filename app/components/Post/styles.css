@@ -61,7 +61,7 @@
 
 .likedIcon {
   composes: icon;
-  color: #4a90e2;;
+  color: #FFD700;;
 }
 
 .author {

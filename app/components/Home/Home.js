@@ -5,8 +5,8 @@ export class Home extends Component {
   render () {
     return (
       <div className={container}>
-        <p className={title}>{'Social'}</p>
-        <p className={slogan}>{'Social platform'}</p>
+        <p className={title}>Let's Talk</p>
+        <p className={slogan}></p>
       </div>
     )
   }

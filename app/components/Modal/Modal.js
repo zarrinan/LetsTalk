@@ -24,10 +24,10 @@ export default function Modal (props) {
 
   return (
     <span className={darkBtn} onClick={props.openModal}>
-      Post
+      New Post
       <ReactModal style={modalStyles} isOpen={props.isOpen} onRequestClose={props.closeModal}>
         <div className={newPostTop}>
-          <span>{'Compose new Post'}</span>
+          <span>Compose new Post</span>
           <span onClick={props.closeModal} className={pointer}>{'X'}</span>
         </div>
         <div className={newPostInputContainer}>
