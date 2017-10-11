@@ -12,6 +12,7 @@ function NavLinks ({ isAuthed }) {
   return isAuthed === true
     ? <ul>
       <li><Link className={link} to='/'>Home</Link></li>
+      <li><Link className={link} to='/feed'>Feed</Link></li>
     </ul>
     : null
 }
@@ -24,7 +25,7 @@ function ActionLinks ({ isAuthed }) {
     </ul>
     : <ul>
       <li><Link className={link} to='/'>Home</Link></li>
-      <li><Link className={link} to='/auth'>Login</Link></li>
+      <li><Link className={link} to='/auth'>Authenticate</Link></li>
     </ul>
 }
 
