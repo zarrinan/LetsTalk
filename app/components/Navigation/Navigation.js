@@ -12,7 +12,7 @@ function NavLinks ({ isAuthed }) {
   return isAuthed === true
     ? <ul>
       <li><Link className={link} to='/'>Home</Link></li>
-      <li><Link className={link} to='/feed'>Feed</Link></li>
+      <li><Link className={link} to='/feed'>Posts</Link></li>
     </ul>
     : null
 }
