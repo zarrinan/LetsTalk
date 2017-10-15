@@ -9,6 +9,7 @@ Navigation.propTypes = ActionLinks.propTypes = NavLinks.propTypes = {
 }
 
 function NavLinks ({ isAuthed }) {
+// separating navigation bar view for authenticated and not authenticated users
   return isAuthed === true
     ? <ul>
       <li><Link className={link} to='/'>Home</Link></li>

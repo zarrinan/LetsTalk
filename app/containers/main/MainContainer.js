@@ -52,6 +52,9 @@ MainContainer.contextTypes = {
   router: PropTypes.object.isRequired,
 }
 
+// connecting component to Redux, so that the dispatch function comes in as a prop to component, which is used to to dispatch a specific action (by invoking reducers)
+// using withRouter to fix redirection
+
 export default withRouter(connect(
   ({users}) => ({isAuthed: users.isAuthed, isFetching: users.isFetching}),
   (dispatch) => bindActionCreators({

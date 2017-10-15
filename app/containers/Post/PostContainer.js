@@ -52,6 +52,9 @@ PostContainer.defaultProps = {
   hideLikeCount: true,
 }
 
+// mapStateToProps specifies which part of the store this component is concerned about;
+// and whenever they change, component will receive new props
+// as an argument, this function receives the current state
 function mapStateToProps ({posts, likeCount, usersLikes}, props) {
   return {
     post: posts[props.postId],
