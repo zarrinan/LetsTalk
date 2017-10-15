@@ -1,22 +1,27 @@
-//users
+//actions to modify the users state
+//when a reducer gets this action, we pass here a uid, when reducer gets this, it will change an authedId to be uid
 {
   type: AUTH_USER,
   uid,
 }
 
+//when we logout, we call Unauth_user, and remove authedId and change isAuthed to false
 {
   type: UNAUTH_USER,
 }
 
+//when it comes to a reducer, it'll change to true, and a component will know to load a loading screen
 {
   type: FETCHING_USER,
 }
 
+//when there is en error fetching user, error in the state becomes error below
 {
   type: FETCHING_USER_FAILURE,
   error: 'Error fetching user',
 }
 
+//whenever we successfully fetched a user, we add the user to the user store and update the lastUpdated with the timestamp and update user info based on user we received
 {
   type: FETCHING_USER_SUCCESS,
   uid,
@@ -25,10 +30,11 @@
 }
 
 //Posts
+//change isFetching to true in Post property
 {
   type: FETCHING_POST,
 }
-
+//error in redux-scheme becomes this message
 {
   type: FETCHING_POST_ERROR,
   error: 'Error fetching post',

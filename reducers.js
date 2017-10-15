@@ -1,4 +1,8 @@
+//creating reducers that will take current state and actions as an argument
+//a reducer must be a pure function, i.e. not modifiying a state, but returning a new one. For that reason, a reducer will return 'Object.assign({}, state, { state.key: newValue,})', or with spread operator '{...state, state.key: newValue}' an object, representing new state.
+
 //Users
+//All of state values in a store have to have some default values. The very first time redux calls any of reducers functions, state is going to be undefined. So we should set up initial state it won't return undefined
 const initialUserState = {
   lastUpdated: 0,
   info: {
@@ -8,7 +12,9 @@ const initialUserState = {
   },
 }
 
+//here we set state to initial value so when reducer is called for the first time, the state is not undefined
 function user (state = initialUserState, action) {
+  //switch statement will look at action.type and based off this action.type it will modify the current state in a certain way
   switch (action.type) {
     case FETCHING_USER_SUCCESS :
       return {
@@ -30,10 +36,13 @@ const initialState = {
 
 export default function users (state = initialState, action) {
   switch (action.type) {
+//when it's called, get the 'users' state (from the store, defined in redux-schema) and apply action with name AUTH_USER, and modify the part described in action 'AUTH_USER' to the 'users' state and return a new modified 'users' state
     case AUTH_USER :
       return {
         ...state,
+//from redux schema, if a user is authed, isAuthed will change to 'true'
         isAuthed: true,
+//and authedId will be the uid that we passed when we did Authed user
         authedId: action.uid,
       }
     case UNAUTH_USER :
@@ -64,8 +73,10 @@ export default function users (state = initialState, action) {
         ...state,
         isFetching: false,
         error: '',
+        //reducer composition which takes a slice of the state defined in the reducer 'user' above
         [action.uid]: user(state[action.uid], action),
       }
+ //we have to set the default to current state, bc when an action gets dispatched it will go to all reducers and for ex, if we don't return anything from this reducer (action is not defined here) this part of the state will be set to undefined
     default:
       return state
   }
@@ -84,6 +95,7 @@ export default function posts (state = initialState, action) {
         ...state,
         isFetching: true,
       }
+  //they both do the same thing, so placed on top of each other
     case ADD_POST :
     case FETCHING_POST_SUCCESS :
       return {
