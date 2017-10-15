@@ -34,6 +34,8 @@
     "webpack-dev-server": "^2.9.1"
   },
   "dependencies": {
+    "algorithmia": "^0.3.10",
+    "express": "^4.16.2",
     "firebase": "^4.5.0",
     "immutable": "^3.8.2",
     "react": "^16.0.0",

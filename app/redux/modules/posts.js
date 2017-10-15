@@ -1,7 +1,6 @@
 import { savePost, fetchPost } from 'helpers/api'
 import { closeModal } from './modal'
 import { addSingleUsersPost } from './usersPosts'
-import { Map, fromJS } from 'immutable'
 
 const FETCHING_POST = 'FETCHING_POST'
 const FETCHING_POST_ERROR = 'FETCHING_POST_ERROR'

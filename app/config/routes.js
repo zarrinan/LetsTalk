@@ -22,7 +22,4 @@ export default function getRoutes (checkAuth) {
   )
 }
 
-//
-//
-
-//
+// onEnter prop is a callback function that gets invoked before a route is about to be entered. It receives a 'nextState (which is an object)' and a 'replace' arguments which help in getting the route we're going to as well as redirecting, if the user isn't authed. nextState allows us to get the pathname of the route we're about to be taken to, replace allows to perform a redirect

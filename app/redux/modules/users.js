@@ -2,6 +2,7 @@ import { fetchUser } from 'helpers/api'
 import auth, { logout, saveUser } from 'helpers/auth'
 import { formatUserInfo } from 'helpers/utils'
 
+// declaring variables out of action types, so that they can be imported in other modules as well
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
 const FETCHING_USER = 'FETCHING_USER'
@@ -9,6 +10,7 @@ const FETCHING_USER_FAILURE = 'FETCHING_USER_FAILURE'
 const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS'
 const REMOVE_FETCHING_USER = 'REMOVE_FETCHING_USER'
 
+// creating functions action wrappers out of actions so that they can be portable
 export function authUser (uid) {
   return {
     type: AUTH_USER,
@@ -45,6 +47,8 @@ export function fetchingUserSuccess (uid, user, timestamp) {
   }
 }
 
+// since we use thunk middleware, we can return a function from an action creator
+// this function handles asynchronous dispatches, by using it, we can delay dispatch of an action, or dispatch only if a certain condition is met. It receives a 'dispatch' argument to dispatch an event that occured  and 'getState()' argument, so we can grab something off the current state or dispatch actions only under certain state conditions. Dispatch returns a promise to be able to chain dispatches inside of a thunk
 export function fetchAndHandleAuthedUser () {
   return function (dispatch) {
     dispatch(fetchingUser())
