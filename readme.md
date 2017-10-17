@@ -20,7 +20,9 @@ The app has 4 pages - Home Page, Posts Feed Page, Profile Page, and Post Reply P
 <img src='https://image.ibb.co/cTyekm/Screenshot_2017_10_15_21_20_13.png' width='400px' height='300px' display='inline-block'>
 </div>
 
-The app is functional. Now, working on issue of closing the modal for a new post.
+The app is functional. Now, working on issue of closing the modal for a new post. <br />
+
+Check out the app here [Let's Talk](https://zarrina-social.firebaseapp.com/) <br />
 
 Tutorials followed:
 
