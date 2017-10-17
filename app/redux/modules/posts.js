@@ -74,10 +74,10 @@ export function fetchAndHandlePost (postId) {
   }
 }
 
-const initialState = Map({
+const initialState = {
   isFetching: true,
   error: '',
-})
+}
 
 export default function posts (state = initialState, action) {
   switch (action.type) {

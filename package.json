@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --open",
+    "build": "cross-env NODE_ENV=production webpack -p",
     "production": "webpack -p",
+    "deploy": "npm run build && firebase deploy",
+    "firebase-init": "firebase login && firebase init",
     "lint": "eslint app/.; exit 0",
     "fix": "eslint --fix app/.; exit 0"
   },
@@ -35,9 +38,10 @@
   },
   "dependencies": {
     "algorithmia": "^0.3.10",
+    "cross-env": "^5.1.0",
     "express": "^4.16.2",
     "firebase": "^4.5.0",
-    "immutable": "^3.8.2",
+    "firebase-tools": "^3.13.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-icons": "^2.2.7",

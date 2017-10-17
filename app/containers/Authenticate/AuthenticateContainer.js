@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 // as we authenticate the user, we want to call userActionCreators to update the state
 import * as userActionCreators from 'redux/modules/users'
-console.log(userActionCreators)
 
 class AuthenticateContainer extends Component {
 
