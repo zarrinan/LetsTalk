@@ -1,14 +1,14 @@
 # Let's Talk
 
-The social platform application, built using Redux, React.js, Firebase, HTML, and CSS. 
+The social platform application, built with Redux, React.js, Firebase, HTML, and CSS. 
 
 The main purpose for building this application for me was to learn Redux and how to use
 Google Firebase for user authentication and managing the application database. Plus, it's a new 
 experience building a social platform application. I've followed many tutorials while building this app (listed below). 
 
-The general approach taken was first to design the database structure for the app. Then, to build 
+The general approach taken was first, to design the database structure for the app. Then, to build 
 the single state tree (store) of the application, and based on that, to describe all possible changes in the application state by
- writing actions, and then, reducers. After connecting the Redux to the React viewlayer, each component was connected to 
+ writing actions, and then, reducers (which take actions and copy of the state to return an updated state). After connecting the Redux to the React viewlayer, each component was connected to 
   Redux through the routes and `connect` function. 
   
 The app has 4 pages - Home Page, Posts Feed Page, Profile Page, and Post Reply Page.  
